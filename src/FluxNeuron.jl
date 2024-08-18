@@ -1,3 +1,4 @@
+"The application demonstrates the training and visualization of a neural network model using Julia and Flux. It also allows us to save trained model in bson format. Module contains function to train model, save it and run test."
 module FluxNeuron
 
 # This will prompt if neccessary to install everything, including CUDA:
@@ -10,7 +11,7 @@ using Flux, CUDA, Statistics, ProgressMeter
             Dense(3 => 2)) |> gpu        # move model to GPU, if available
         return model
     end
-
+    
     function train(model, noisy, steps=1_000)
         # Generate some data for the XOR problem: vectors of length 2, as columns of a matrix:                             # 2×1000 Matrix{Float32}
         truth = [xor(col[1]>0.5, col[2]>0.5) for col in eachcol(noisy)]   # 1000-element Vector{Bool}
